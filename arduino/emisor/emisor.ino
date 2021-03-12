@@ -1,7 +1,4 @@
-#include <WiFi.h>
-#include <HTTPClient.h>
-#include <string.h>
-#include "ESP32_MailClient.h"
+#include <Arduino.h>
 
 #define OUT_LED_ONBOARD 2
 #define DEBUG_ANALOG_PIN 34
@@ -11,7 +8,7 @@ unsigned long MAX_TIEMPO_ESPERA_REGISTRO_DB = DELAY_REPEAT_LOOP * 2;
 unsigned long ultimoTiempoRegDb = 0;
 
 /*==============================================
-  SETUP DEL ESP32
+  SETUP DEL MICRO
 ==============================================*/
 void setup() {
     Serial.begin(115200);
@@ -25,7 +22,7 @@ void setup() {
 }
 
 /*==============================================
-  LOOP DEL ESP32
+  LOOP DEL MICRO
 ==============================================*/
 void loop() {
     float temp=0;
