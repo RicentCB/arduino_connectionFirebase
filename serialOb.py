@@ -19,24 +19,21 @@ class SerialOb():
     def close(self):
         self.ser.close()
     
-    #Funcion para escuchar desde el puerto Serie
-    def getFromSerial(self):
-        strMessage = ""
-        while True:
-            for car in self.ser.read():
-                strMessage += chr(car)
-                if(chr(car) == '\n'):
-                    # print(strMessage)
-                    arrayPartsMessage = strMessage.split(sep=",")
-                    if(len(arrayPartsMessage)>1):
-                        print('S1:'+arrayPartsMessage[0]+' S2:'+arrayPartsMessage[1]+' S3:'+arrayPartsMessage[2])
-                    # Proceso de Mensaje
-                    strMessage = ""
-
 #--------------------------------
 #Termina OBJETO SERIAL
 
 arduino = SerialOb("COM5", 115200)
 #Leer puerto serie del arduino
+strMessage = ""
+while True:
+    for car in arduino.ser.read():
+        strMessage += chr(car)
+        if(chr(car) == '\n'):
+            # print(strMessage)
+            arrayPartsMessage = strMessage.split(sep=",")
+            if(len(arrayPartsMessage)>1):
+                print('S1:'+arrayPartsMessage[0]+' S2:'+arrayPartsMessage[1]+' S3:'+arrayPartsMessage[2])
+            # Proceso de Mensaje
+            strMessage = ""
 
 arduino.close()
