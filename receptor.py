@@ -20,6 +20,6 @@ while True:
     
     #Escribir en monitor serie
     print("Enviando dato")
-    arduino.ser.write(255)
+    arduino.ser.write(lastValue)
 # arduino.close()
 # time.sleep(6)
