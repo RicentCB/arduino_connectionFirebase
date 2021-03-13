@@ -12,6 +12,7 @@ unsigned long ultimoTiempoRegDb = 0;
 ==============================================*/
 void setup() {
     Serial.begin(115200);
+    
     //Pines Auxiliares
     pinMode(OUT_LED_ONBOARD, OUTPUT);//Led onboard
 
@@ -32,21 +33,30 @@ void loop() {
     //Enviar registro a DB de la temperatura
     if((millis() - ultimoTiempoRegDb) >=  MAX_TIEMPO_ESPERA_REGISTRO_DB){
       Serial.println("Registro de Datos en DB");
+        //Impresion de datos en el monitor serie
+        Serial.print(temp, 0);
+
+        Serial.print(",");
+        Serial.print(temp, 0);
+
+        Serial.print(",");
+        Serial.print(temp,2);
+
+        Serial.println();
       ultimoTiempoRegDb = millis();
     }
 
+    // if(Serial.available()){
+    //     String readString;
+    //     char c = Serial.read();
+    //     readString += c;
+    //     Serial.print("Se recibio: ");
+    //     Serial.println(readString);
+    // }
+
     //------------------------------------------
-    //Impresion de datos en el monitor serie
-    Serial.print(temp, 0);
-
-    Serial.print(",");
-    Serial.print(temp, 0);
-
-    Serial.print(",");
-    Serial.print(temp,2);
-
-    Serial.println();
+    
     // Delay para repetir ciclo
-    delay(DELAY_REPEAT_LOOP);
+    // delay(DELAY_REPEAT_LOOP);
 
 }
